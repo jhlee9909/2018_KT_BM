@@ -3,9 +3,11 @@
 #include <windows.h>
 #include <time.h>
 
+#define SIZE 32
+
 void main_screen();
 void StarCatch();
-void SnakeLadder();
+
 void initGame();
 
 int main(void)
@@ -14,11 +16,11 @@ int main(void)
 }
 void initGame()
 {
-	srand(time(NULL));
+	srand((unsigned)time(NULL));
 }
 void main_screen()
 {
-	
+
 	int select;
 
 	printf("\n");
@@ -60,7 +62,7 @@ void main_screen()
 		//2번 게임
 		break;
 	case 3:
-		SnakeLadder();
+
 		break;
 	case 4:
 		StarCatch();
@@ -75,57 +77,107 @@ void main_screen()
 
 
 void StarCatch() {
+	int counter = 0;
+	int counterMax;
+	int answer;
 	int i;
-	char slot[10];
+	char slot[SIZE];
 	int sw = 1;
 	int star = 1;
 
-	while (1) {
-		for (i = 0; i < 10; i++) {
+	char input = 0;
 
-			slot[i] = '_';
+	srand(time(NULL));
+	counterMax = (rand() % 29) + 1;
+
+	system("cls");
+	printf("*당첨번호 뽑기 게임\n");
+
+	printf("*몇번이 당첨될까요?(1~29) :");
+	scanf_s("%d", &answer);
+
+	while (1) {
+		printf("*당신의 예상 : %d\n\n", answer);
+		for (i = 0; i < SIZE; i++) {
+
+			slot[i] = '=';
 
 		}
 
 		slot[0] = '[';
-		slot[9] = ']';
+		slot[SIZE - 1] = ']';
 
 
-		slot[star] = '★';
+		slot[star] = 'A';
 		printf("\n\n\n\n\n");
-		for (i = 0; i < 10; i++) {
+		for (i = 0; i < SIZE; i++) {
 
 			printf(" %c ", slot[i]);
 
 
 		}
-		printf("\n\n\n\n\n");
+
+		printf("\n");
+		printf(" [ ");
+		for (i = 0; i < SIZE - 2; i++) {
+
+			printf(" V ");
+
+
+		}
+		printf(" ]");
+
 
 
 
 		if (star == 1 && sw == -1)
 			sw = 1;
-		else if (star == 8 && sw == 1)
+		else if (star == SIZE - 2 && sw == 1)
 			sw *= -1;
 
+		if (counter == counterMax) {
+
+			printf("\n");
+			printf(" [ ");
+			for (i = 0; i < SIZE - 2; i++) {
+
+				if (i != counterMax)
+					printf("   ");
+				else
+					printf(" X ");
+
+
+			}
+			printf(" ]");
+			printf("\n\n\n\n\n");
+			break;
+
+		}
+
 		star += sw;
+		counter++;
 
 
-		Sleep(5);
+		Sleep(100);
+
+
+
 		system("cls");
 	}
+	if (answer != counterMax) {
+		printf("*당첨은 %d 번 이었습니다!\n", counterMax + 1);
+	}
+	else
+		printf("*축하합니다 %d번 당첨입니다 \n", counterMax + 1);
+	printf("\n\n\n\n\n");
 
-}
+	printf("*아무키나 입력해주세요");
 
-void SnakeLadder()
-{
-	int a,b;
-	int dice;
-	int map[7][7];
-	printf("\n\n");
-	printf();
-	
+	getch();
+	fflush(stdin);
 
-
+	system("cls");
+	main_screen();
 	return;
 }
+
