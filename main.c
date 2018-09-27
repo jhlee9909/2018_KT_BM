@@ -122,7 +122,8 @@ void SnakeLadder()
 	int a,b;
 	int dice;
 	int map[7][7];
-	printf("");
+	printf("\n\n");
+	printf();
 	
 
 
