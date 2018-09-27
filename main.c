@@ -6,19 +6,14 @@
 void main_screen();
 void StarCatch();
 void SnakeLadder();
-void initGame();
 
 int main(void)
 {
 	main_screen();
 }
-void initGame()
-{
-	srand(time(NULL));
-}
 void main_screen()
 {
-	
+	srand(time(NULL));
 	int select;
 
 	printf("\n");
@@ -119,13 +114,62 @@ void StarCatch() {
 
 void SnakeLadder()
 {
-	int a,b;
+	int i, j, dir = 1;
+	//dir(다이렉션 : 방향) 1일때 오른쪽 -1일때 왼쪽
+	int a=0, b=0;
+	//플레이어들 현재 위치
 	int dice;
-	int map[7][7];
-	printf("\n\n");
-	printf();
+	int OriginalMap[49];
+	int map[49];
 	
+	//initialize map
+	for (i = 0; i < 49; i++)
+	{
+		OriginalMap[i] = i;
+		map[i] = i;
+	}
+	
+	system("cls");
+
+	printf("\n\n\n\n			A의 턴");
+	Sleep(1000);
+	system("cls");
+	i = 42;
+	while(1)
+	{
+		for (j = 0; j < 7; j++)
+		{
+			printf("%5d", map[i]);
+			if (dir == 1)
+			{
+				i++;
+				if (j == 6)
+					i--;
+			}
+			else if (dir == -1)
+			{
+				i--;
+				if (j == 6)
+					i++;
+			}
+		}
+		if (i == 6)
+			break;
+		i = i - 7;
+		dir = dir * (-1);
+		printf("\n");
+	}
+	Sleep(3000);
+	system("cls");
+	printf("\n\n\n\n		주사위를 굴립니다 :   ");
+	Sleep(500);
+	system("cls");
+	dice = rand() % 6 + 1;
+	printf("\n\n\n\n		주사위를 굴립니다 : %d ",dice);
+	Sleep(500);
+	system("cls");
 
 
+	
 	return;
 }
