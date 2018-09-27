@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 #include <time.h>
@@ -13,7 +13,7 @@ int main(void)
 }
 void main_screen()
 {
-	srand(time(NULL));
+	srand((unsigned)time(NULL));
 	int select;
 
 	printf("\n");
@@ -33,15 +33,15 @@ void main_screen()
 	printf("		********************************************************************************\n");
 	printf("		********************************************************************************\n\n\n");
 
-	printf("½ÃÀÛÇÒ °ÔÀÓÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.\n\n");
-	printf("1.¼ıÀÚ ¾ß±¸			2.°¡À§¹ÙÀ§º¸			3.¹ì»ç´Ù¸® °ÔÀÓ			4.½ºÅ¸Ä³Ä¡\n\n\n");
+	printf("ì‹œì‘í•  ê²Œì„ì„ ì„ íƒí•´ì£¼ì„¸ìš”.\n\n");
+	printf("1.ìˆ«ì ì•¼êµ¬			2.ê°€ìœ„ë°”ìœ„ë³´			3.ë±€ì‚¬ë‹¤ë¦¬ ê²Œì„			4.ìŠ¤íƒ€ìºì¹˜\n\n\n");
 
-	printf("-¹øÈ£¸¸ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+	printf("-ë²ˆí˜¸ë§Œ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
 	scanf("%d", &select);
 
 	while (select < 1 || select > 4) {
 
-		printf("-ÀÔ·Â°ªÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀ½ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+		printf("-ì…ë ¥ê°’ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŒ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 		scanf_s("%d", &select);
 
 	}
@@ -49,10 +49,10 @@ void main_screen()
 	switch (select)
 	{
 	case 1:
-		//1¹ø°ÔÀÓ
+		//1ë²ˆê²Œì„
 		break;
 	case 2:
-		//2¹ø °ÔÀÓ
+		//2ë²ˆ ê²Œì„
 		break;
 	case 3:
 		SnakeLadder();
@@ -86,7 +86,7 @@ void StarCatch() {
 		slot[9] = ']';
 
 
-		slot[star] = '¡Ú';
+		slot[star] = 'â˜…';
 		printf("\n\n\n\n\n");
 		for (i = 0; i < 10; i++) {
 
@@ -114,10 +114,10 @@ void StarCatch() {
 
 void SnakeLadder()
 {
-	int i, j, dir = 1;
-	//dir(´ÙÀÌ·º¼Ç : ¹æÇâ) 1ÀÏ¶§ ¿À¸¥ÂÊ -1ÀÏ¶§ ¿ŞÂÊ
+	int i, j, dir = 1,move;
+	//dir(ë‹¤ì´ë ‰ì…˜ : ë°©í–¥) 1ì¼ë•Œ ì˜¤ë¥¸ìª½ -1ì¼ë•Œ ì™¼ìª½
 	int a=0, b=0;
-	//ÇÃ·¹ÀÌ¾îµé ÇöÀç À§Ä¡
+	//í”Œë ˆì´ì–´ë“¤ í˜„ì¬ ìœ„ì¹˜
 	int dice;
 	int OriginalMap[49];
 	int map[49];
@@ -131,8 +131,8 @@ void SnakeLadder()
 	
 	system("cls");
 
-	printf("\n\n\n\n			AÀÇ ÅÏ");
-	Sleep(1000);
+	printf("\n\n\n			Aì˜ í„´");
+	Sleep(500);
 	system("cls");
 	i = 42;
 	while(1)
@@ -140,6 +140,7 @@ void SnakeLadder()
 		for (j = 0; j < 7; j++)
 		{
 			printf("%5d", map[i]);
+
 			if (dir == 1)
 			{
 				i++;
@@ -159,15 +160,60 @@ void SnakeLadder()
 		dir = dir * (-1);
 		printf("\n");
 	}
-	Sleep(3000);
-	system("cls");
-	printf("\n\n\n\n		ÁÖ»çÀ§¸¦ ±¼¸³´Ï´Ù :   ");
 	Sleep(500);
 	system("cls");
-	dice = rand() % 6 + 1;
-	printf("\n\n\n\n		ÁÖ»çÀ§¸¦ ±¼¸³´Ï´Ù : %d ",dice);
+	printf("\n\n\n		ì£¼ì‚¬ìœ„ë¥¼ êµ´ë¦½ë‹ˆë‹¤ :   ");
+	printf("\n\n		ì—”í„°ë¥¼ ëˆŒëŸ¬ì£¼ì„¸ìš”");
+	getch();
+	system("cls");
+	dice = 30;
+	//dice = rand() % 6 + 1;
+	printf("\n\n\n\n		ì£¼ì‚¬ìœ„ë¥¼ êµ´ë¦½ë‹ˆë‹¤ : %d ",dice);
 	Sleep(500);
 	system("cls");
+
+	
+	for (move = a; move <= a+dice; move++)
+	{
+		i = 42;
+		map[move] = 65;
+		while (1)
+		{
+			for (j = 0; j < 7; j++)
+			{
+				if (map[i] != OriginalMap[i])
+				{
+					printf("%5c", map[i]);
+					map[i] = OriginalMap[i];
+				}
+				else
+					printf("%5d", map[i]);
+
+				if (dir == 1)
+				{
+					i++;
+					if (j == 6)
+						i--;
+				}
+
+				else if (dir == -1)
+				{
+					i--;
+					if (j == 6)
+						i++;
+				}
+			}
+			if (i == 6)
+				break;
+			i = i - 7;
+			dir = dir * (-1);
+			printf("\n");
+			
+		}
+		Sleep(500);
+		system("cls");
+	}
+	
 
 
 	
