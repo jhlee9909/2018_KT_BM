@@ -5,7 +5,7 @@
 void main_screen();
 void StarCatch();
 
-
+//asdfghjk
 int main(void)
 {
 	main_screen();
