@@ -1,3 +1,0 @@
-﻿  main.c
-c:\users\gelzg\onedrive\바탕 화면\2차 특성화 자율학습\파일\game\gamemain\main.c(79): warning C4305: '=': 'int'에서 'char'(으)로 잘립니다.
-  GameMain.vcxproj -> C:\Users\gelzg\OneDrive\바탕 화면\2차 특성화 자율학습\파일\Game\Debug\GameMain.exe

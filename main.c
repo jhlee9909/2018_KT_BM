@@ -1,18 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<windows.h>
+#include <windows.h>
+#include <time.h>
 
 void main_screen();
 void StarCatch();
+void SnakeLadder();
+void initGame();
 
-//asdfghjk
 int main(void)
 {
 	main_screen();
 }
-
+void initGame()
+{
+	srand(time(NULL));
+}
 void main_screen()
 {
+	
 	int select;
 
 	printf("\n");
@@ -22,10 +28,10 @@ void main_screen()
 	printf("		****                *               *                  *  *             *   ****\n");
 	printf("		****    *******	    *   *           *   **********     *  *     ****    *   ****\n");
 	printf("		****    *     *	    *   *           *           *      *  *    *    *   *   ****\n");
-	printf("		****    *     *	    *   *           *         *   ******  *    *    *   *   ****\n");
-	printf("		****    *     *	    *   *           *       *          *  *     ****    *   ****\n");
-	printf("		****    *******	    *   ********    *     *            *  *                 ****\n");
-	printf("		****                *               *                     *      ********   ****\n");
+	printf("		****    *     *	    *   *           *          *  ******  *    *    *   *   ****\n");
+	printf("		****    *     *	    *   *           *         *        *  *     ****    *   ****\n");
+	printf("		****    *******	    *   ********    *        *         *  *                 ****\n");
+	printf("		****                *               *       *             *      ********   ****\n");
 	printf("		****                                                             *      *   ****\n");
 	printf("		****                                                             ********   ****\n");
 	printf("		****                                                                        ****\n");
@@ -36,15 +42,15 @@ void main_screen()
 	printf("1.숫자 야구			2.가위바위보			3.뱀사다리 게임			4.스타캐치\n\n\n");
 
 	printf("-번호만 입력해주세요 : ");
-	scanf_s("%d", &select);
+	scanf("%d", &select);
 
 	while (select < 1 || select > 4) {
-	
+
 		printf("-입력값이 올바르지 않음 다시 입력해주세요 :");
 		scanf_s("%d", &select);
-	
+
 	}
-	
+
 	switch (select)
 	{
 	case 1:
@@ -54,9 +60,9 @@ void main_screen()
 		//2번 게임
 		break;
 	case 3:
-		//3번 게임
+		SnakeLadder();
 		break;
-	case 4 :
+	case 4:
 		StarCatch();
 		break;
 
@@ -109,4 +115,16 @@ void StarCatch() {
 		system("cls");
 	}
 
+}
+
+void SnakeLadder()
+{
+	int a,b;
+	int dice;
+	int map[7][7];
+	printf("");
+	
+
+
+	return;
 }
