@@ -4,7 +4,6 @@
 #define Line 10		//오목판의 가로,세로의 숫자(정사각형)
 #define stone 5		//승리하기 위해 놓아야하는 돌 수
 
-
 void stone_game();
 
 int main(void)
@@ -40,13 +39,19 @@ void stone_game(){
 		printf("돌을 둘 자리를 선택해주세요. : ");
 		scanf_s("%d",&input);
 
-		if(i%2 == 0 && checked_pattern[input-1] != 'h' && checked_pattern[input-1] != 'k'){
-			checked_pattern[input-1] = 'h';
+		if(i%2 == 0 && checked_pattern[input-1] != 'x' && checked_pattern[input-1] != 'o'){
+			checked_pattern[input-1] = 'x';
 			system("cls");
 		}
-		else if(i%2 == 1 && checked_pattern[input-1] != 'h' && checked_pattern[input-1] != 'k'){
-			checked_pattern[input-1] = 'k';
+		else if(i%2 == 1 && checked_pattern[input-1] != 'x' && checked_pattern[input-1] != 'o'){
+			checked_pattern[input-1] = 'o';
 			system("cls");
+		}
+		else if(input > 100 || input < 1){
+			system("cls");
+			printf("\n			***************잘못 입력하였습니다.***************\n\n");
+			i--;
+			
 		}
 		else{
 			system("cls");
@@ -58,10 +63,10 @@ void stone_game(){
 
 		for(w=0;w<Line*Line;w++){
 			count++;
-			if(checked_pattern[w] == 'h'){
+			if(checked_pattern[w] == 'x'){
 				printf(" %c	|  ",checked_pattern[w]);
 			}
-			else if(checked_pattern[w] == 'k'){
+			else if(checked_pattern[w] == 'o'){
 				printf(" %c	|  ",checked_pattern[w]);
 			}
 			else{
@@ -130,20 +135,23 @@ void stone_game(){
 		}
 		score=0;
 ///////////////////////////////////////////////////////////////대각선(왼쪽위에서 오른쪽아래) 5개로 승리
-		for(w=stone-1;w<Line;w++){
-			for(z=0;z<Line-stone+1;z++){
-				if(checked_pattern[w+(z*9)] == checked_pattern[(w+9)+(z*9)]){
-						score++;
+		for(x=0;x<Line-stone+1;x++){
+			for(w=stone-1;w<Line+1;w++){
+				for(z=0;z<stone;z++){
+					if(checked_pattern[w+(z*9)+(x*10)] == checked_pattern[(w+9)+(z*9)+(x*10)]){
+							score++;
+					}
+					if(score == stone-1){
+						if(i%2 == 1)
+							printf("k돌을 놓은 플레이어가 승리하였습니다.");
+						else if(i%2 == 0)
+							printf("h돌을 놓은 플레이어가 승리하였습니다.");
+						return;
+					}
+					
 				}
-				if(score == stone-1){
-					if(i%2 == 1)
-						printf("k돌을 놓은 플레이어가 승리하였습니다.");
-					else if(i%2 == 0)
-						printf("h돌을 놓은 플레이어가 승리하였습니다.");
-					return;
-				}
+				score=0;
 			}
-			score=0;
 		}
 ///////////////////////////////////////////////////////////////대각선(왼쪽아래에서 오른쪽위) 5개로 승리
 	}
